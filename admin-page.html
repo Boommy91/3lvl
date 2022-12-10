@@ -8,10 +8,48 @@
     <title>Admin</title>
 </head>
 <body>
+<header>
+    <button class="main-page">Library</button>
+    <button class="exit">Exit</button>
+</header>
 <div class="book-list">
-
+    Books list
+    <table>
+        <tr>
+            <td>Name of book</td>
+            <td>Authors</td>
+            <td>Year</td>
+            <td>Delete</td>
+            <td>Click</td>
+        </tr>
+        <tr>
+            <td>Eneida</td>
+            <td>Kotlyarevski</td>
+            <td>1843</td>
+            <td>Delete</td>
+            <td>140</td>
+        </tr>
+    </table>
 </div>
-<div class="add-book"></div>
+<div class="add-book">
+    <form action="post" class="send-book">
+        <div class="left-side">
+            <input type="text" placeholder="name of the book"/>
+            <input type="text" placeholder="year"/>
+            <input type="file" name="load picture" id="bookImg">
+            <img src="images.png">
+        </div>
+        <div class="right-side">
+            <input type="text" placeholder="author 1"/>
+            <input type="text" placeholder="author 2"/>
+            <input type="text" placeholder="author 3"/>
+            <input type="text" name="lksdjfl">
+
+        </div>
+        <input type="submit" value="add">
+
+    </form>
+</div>
 
 </body>
 </html>
