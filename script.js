@@ -13,10 +13,9 @@ $("#addButton").click(function () {
         data: {nameOfBook, year, authorFirst, authorSecond, authorThird, description, img},
         success: function (data) {
             if (data === 'ok') {
-                alert('Book add success!!!');
+                alert('The book has been added successfully');
             }
         }
     })
-
 });
 

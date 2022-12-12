@@ -13,12 +13,12 @@
 <body>
 <header class="header">
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="/3lvl/index.php">
+        <a class="navbar-brand" href="index.php">
             <img src="./img/Paomedia-Small-N-Flat-Book.ico" width="30" height="30" class="d-inline-block align-top"
                  alt="">
             Book library
         </a>
-        <a class="navbar-brand" href="/3lvl/index.php">
+        <a class="navbar-brand" href="index.php">
             <button class="btn font-monospace text-primary">Exit</button>
         </a>
     </nav>
@@ -30,36 +30,32 @@
             <div class="book-list">
                 <h3> Books list</h3>
                 <table class="table table-striped">
-
-                    <tr class="bg-gradient" style="background-color: lightseagreen; font-weight: bold">
+                    <thead class="bg-gradient" style="background-color: lightseagreen; font-weight: bold">
+                    <tr>
                         <td>Name of book</td>
                         <td>Authors</td>
                         <td>Year</td>
                         <td>Delete</td>
                         <td>Click</td>
                     </tr>
-                    <tr>
-                        <td>Eneida</td>
-                        <td>Kotlyarevski</td>
-                        <td>1843</td>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $connection = require 'controller/connect.php';
+                    $sql = "SELECT * FROM books";
+                    $result = $connection->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($result as $item) {
+                        echo  " <tr>
+                        <td>{$item['name']}</td>
+                        <td>{$item['author_1']}, {$item['author_2']}, {$item['author_3']}</td>
+                        <td>{$item['year']}</td>
                         <td>Delete</td>
                         <td>140</td>
-                    </tr>
-                    <tr>
-                        <td>Eneida</td>
-                        <td>Kotlyarevski</td>
-                        <td>1843</td>
-                        <td>Delete</td>
-                        <td>140</td>
-                    </tr>
-                    <tr>
-                        <td>Eneida</td>
-                        <td>Kotlyarevski</td>
-                        <td>1843</td>
-                        <td>Delete</td>
-                        <td>140</td>
-                    </tr>
+                    </tr>";
+                    }
+                    ?>
 
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -74,7 +70,7 @@
                             <p></p>
                             <input type="text" id="yearBook" class="input-group-text" placeholder="year"/>
                             <p></p>
-                            <input type="file" id="imgBook"  name="load picture" id="bookImg">
+                            <input type="file" id="imgBook" name="load picture" id="bookImg">
                             <p></p>
                         </div>
 
@@ -86,7 +82,7 @@
                             <p></p>
                             <input type="text" id="authorBook3" class="input-group-text" placeholder="author 3"/>
                             <p></p>
-                            <textarea  id="description" class='input-group-text' cols="22" rows="5"></textarea>
+                            <textarea id="description" class='input-group-text' cols="22" rows="5"></textarea>
                             <p></p>
 
                         </div>
