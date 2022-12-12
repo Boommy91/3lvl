@@ -6,10 +6,35 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Book library</title>
+    <link rel="stylesheet" href="./file/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+
 </head>
 <body>
+<header class="header">
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="/3lvl/index.php">
+            <img src="./img/Paomedia-Small-N-Flat-Book.ico" width="30" height="30" class="d-inline-block align-top"
+                 alt="">
+            Book library
+        </a>
+        <a class="navbar-brand" href="/3lvl/admin.html">
+            <button class="btn font-monospace text-primary">Admin page</button>
+        </a>
+    </nav>
+
+</header>
 <h1>Main page</h1>
 
-<form action="" method="post"></form>
+<form action="addBook.php" method="post">
+    <input type="text/" id="someTxt" name="someTxt">
+    <input type="submit" class="btn btn-success" value="submit">
+</form>
+<form action="/addBook.php">
+    <label for="fname">First name:</label><br>
+    <input type="text" id="fname" name="fname" value="John"><br>
+    <label for="lname">Last name:</label><br>
+    <input type="text" id="lname" name="lname" value="Doe"><br><br>
+    <input type="submit" value="Submit">
+</form>
 </body>
 </html>
