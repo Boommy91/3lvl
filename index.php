@@ -1,2 +1,2 @@
 <?php
-require 'admin-page.html';
+require 'main.html';
