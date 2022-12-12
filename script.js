@@ -8,9 +8,15 @@ $("#addButton").click(function () {
     let img = $("#imgBook").val();
 
     $.ajax({
-        url: 'controler/addBook.php',
+        url: 'controller/addBook.php',
         type: 'post',
-        data: {nameOfBook, year, authorFirst, authorSecond, authorThird, description,img},
+        data: {nameOfBook, year, authorFirst, authorSecond, authorThird, description, img},
+        success: function (data) {
+            if (data === 'ok') {
+                alert('Book add success!!!');
+            }
+        }
     })
+
 });
 
