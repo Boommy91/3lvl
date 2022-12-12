@@ -17,7 +17,7 @@
             Book library
         </a>
         <a class="navbar-brand" href="/3lvl/index.php">
-            <button class="btn font-monospace text-primary"">Exit</button>
+            <button class="btn font-monospace text-primary">Exit</button>
         </a>
     </nav>
 
@@ -65,7 +65,7 @@
         <div id="add-book" class="col-lg-5">
             <div class="container">
                 <h3> Add new book</h3>
-                <form method="post" action="addBook.php">
+                <form>
                     <div class="row">
                         <div id="left-side" class="col-lg-8 ">
                             <input type="text" id="nameBook" class="input-group-text" placeholder="name of the book"/>
@@ -89,7 +89,7 @@
 
                         </div>
                         <div class="container">
-                            <input type="submit" class="btn btn-success" value="add">
+                            <input type="button" class="btn btn-success" id="add" value="add">
                         </div>
                     </div>
                 </form>
@@ -97,5 +97,6 @@
         </div>
     </div>
 </div>
+<script src="script.js"></script>
 </body>
 </html>
