@@ -5,8 +5,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./file/bootstrap-5.0.2-dist/css/bootstrap.min.css">
     <title>Admin</title>
+    <link rel="stylesheet" href="./file/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <script src="./file/jquery.js"></script>
+
 </head>
 <body>
 <header class="header">
@@ -65,14 +67,14 @@
         <div id="add-book" class="col-lg-5">
             <div class="container">
                 <h3> Add new book</h3>
-                <form>
+                <form method="post">
                     <div class="row">
                         <div id="left-side" class="col-lg-8 ">
                             <input type="text" id="nameBook" class="input-group-text" placeholder="name of the book"/>
                             <p></p>
                             <input type="text" id="yearBook" class="input-group-text" placeholder="year"/>
                             <p></p>
-                            <input type="file" id="imgBook" class="type-image" name="load picture" id="bookImg">
+                            <input type="file" id="imgBook"  name="load picture" id="bookImg">
                             <p></p>
                         </div>
 
@@ -84,12 +86,12 @@
                             <p></p>
                             <input type="text" id="authorBook3" class="input-group-text" placeholder="author 3"/>
                             <p></p>
-                            <textarea id="textArea" id="description" class='input-group-text' rows="5"></textarea>
+                            <textarea  id="description" class='input-group-text' rows="5"></textarea>
                             <p></p>
 
                         </div>
                         <div class="container">
-                            <input type="button" class="btn btn-success" id="add" value="add">
+                            <input type="button" class="btn btn-success" id="addButton" value="add">
                         </div>
                     </div>
                 </form>
