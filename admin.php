@@ -24,6 +24,7 @@
     </nav>
 
 </header>
+
 <div class="container">
     <div class="row">
         <div class="col-lg-7">
@@ -41,23 +42,54 @@
                     </thead>
                     <tbody>
                     <?php
-                    $connection = require 'controller/connect.php';
-                    $sql = "SELECT * FROM books";
-                    $result = $connection->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-                    foreach ($result as $item) {
-                        echo  " <tr>
-                        <td>{$item['name']}</td>
-                        <td>{$item['author_1']}, {$item['author_2']}, {$item['author_3']}</td>
-                        <td>{$item['year']}</td>
+                    $db = require __DIR__ . '/controller/connect.php';
+                    $data = $db->query('SELECT * FROM city')->fetchAll(PDO::FETCH_ASSOC);
+                    $total = count($data);
+                    $perPage = 10;
+                    $countOfPages = ceil($total / $perPage);
+
+                    $page = $_GET['page'] ?? 1;
+                    $page = (int)$page;
+
+
+                    if ($page < 1) {
+                        $page = 1;
+                    } elseif ($page > $countOfPages) {
+                        $page = $countOfPages;
+                    }
+
+                    $start = ($page - 1) * $perPage;
+                    $end = $start + $perPage;
+
+                    $limitData = $db->query("SELECT * FROM city LIMIT $start,$perPage ")->fetchAll(PDO::FETCH_ASSOC);
+
+                    foreach ($limitData as $datum) {
+                        echo "
+                        <tr>
+                        <td>{$datum['Name']}</td>
+                        <td>{$datum['District']}</td>
+                        <td>{$datum['Population']}</td>
                         <td>Delete</td>
-                        <td>140</td>
+                        <td>Click</td>
                     </tr>";
                     }
                     ?>
-
                     </tbody>
                 </table>
+                <?php
+                echo "<button class=' btn'> <a href='?page=1'>1</a></button>";
+
+                for ($i = $page - 1; $i <= $page + 3; $i++) {
+                    if ($i > 1) {
+                        echo "<button class=' btn'> <a href='?page={$i}'>$i</a></button>";
+                    }
+                }
+                echo "<button class=' btn'> <a href='?page={$countOfPages}'>$countOfPages</a></button>";
+
+                ?>
             </div>
+
+
         </div>
 
         <div id="add-book" class="col-lg-5">
