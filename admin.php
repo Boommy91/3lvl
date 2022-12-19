@@ -69,7 +69,7 @@
                         <td>{$datum['Name']}</td>
                         <td>{$datum['District']}</td>
                         <td>{$datum['Population']}</td>
-                        <td>Delete</td>
+                        <td><a href='./controller/deleteBook.php?id={$datum['ID']}' class='del' >Delete</a></td>
                         <td>Click</td>
                     </tr>";
                     }

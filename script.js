@@ -18,4 +18,8 @@ $("#addButton").click(function () {
         }
     })
 });
+$(".del").click(function () {
+    console.log($(".del").attr('id'));
+});
+
 
