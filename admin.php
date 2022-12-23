@@ -34,8 +34,8 @@
                     <thead class="bg-gradient" style="background-color: lightseagreen; font-weight: bold">
                     <tr>
                         <td>Name of book</td>
-                        <td>Authors</td>
                         <td>Year</td>
+                        <td>Authors</td>
                         <td>Delete</td>
                         <td>Click</td>
                     </tr>
@@ -43,7 +43,7 @@
                     <tbody>
                     <?php
                     $db = require __DIR__ . '/controller/connect.php';
-                    $data = $db->query('SELECT * FROM city')->fetchAll(PDO::FETCH_ASSOC);
+                    $data = $db->query('SELECT * FROM books')->fetchAll(PDO::FETCH_ASSOC);
                     $total = count($data);
                     $perPage = 10;
                     $countOfPages = ceil($total / $perPage);
@@ -61,15 +61,15 @@
                     $start = ($page - 1) * $perPage;
                     $end = $start + $perPage;
 
-                    $limitData = $db->query("SELECT * FROM city LIMIT $start,$perPage ")->fetchAll(PDO::FETCH_ASSOC);
+                    $limitData = $db->query("SELECT * FROM books LIMIT $start,$perPage ")->fetchAll(PDO::FETCH_ASSOC);
 
-                    foreach ($limitData as $datum) {
+                    foreach ($limitData as $colData) {
                         echo "
                         <tr>
-                        <td>{$datum['Name']}</td>
-                        <td>{$datum['District']}</td>
-                        <td>{$datum['Population']}</td>
-                        <td><a href='./controller/deleteBook.php?id={$datum['ID']}' class='del' >Delete</a></td>
+                        <td>{$colData['name']}</td>
+                        <td>{$colData['year']}</td>
+                        <td>{$colData['author_1']} {$colData['author_2']} {$colData['author_3']}</td>
+                        <td><a href='./controller/deleteBook.php?id={$colData['id']}' class='del' >Delete</a></td>
                         <td>Click</td>
                     </tr>";
                     }
@@ -95,34 +95,33 @@
         <div id="add-book" class="col-lg-5">
             <div class="container">
                 <h3> Add new book</h3>
-                <form method="post">
+                <form method="post" id="image-upload-form">
                     <div class="row">
                         <div id="left-side" class="col-lg-8 ">
-                            <input type="text" id="nameBook" class="input-group-text" placeholder="name of the book"/>
+                            <input type="text" name="name" class="input-group-text" placeholder="name of the book"/>
                             <p></p>
-                            <input type="text" id="yearBook" class="input-group-text" placeholder="year"/>
+                            <input type="text" name="year" class="input-group-text" placeholder="year"/>
                             <p></p>
-                            <input type="file" id="imgBook" name="load picture" id="bookImg">
+                            <input type="file" name="img" id="bookImg">
                             <p></p>
                         </div>
-
-
                         <div id="right-side" class="col-lg-4">
-                            <input type="text" id="authorBook1" class="input-group-text" placeholder="author 1"/>
+                            <input type="text" name="authorBook1" class="input-group-text" placeholder="author 1"/>
                             <p></p>
-                            <input type="text" id="authorBook2" class="input-group-text" placeholder="author 2"/>
+                            <input type="text" name="authorBook2" class="input-group-text" placeholder="author 2"/>
                             <p></p>
-                            <input type="text" id="authorBook3" class="input-group-text" placeholder="author 3"/>
+                            <input type="text" name="authorBook3" class="input-group-text" placeholder="author 3"/>
                             <p></p>
-                            <textarea id="description" class='input-group-text' cols="22" rows="5"></textarea>
+                            <textarea name="description" class='input-group-text' cols="22" rows="5"></textarea>
                             <p></p>
-
                         </div>
                         <div class="container">
-                            <input type="button" class="btn btn-success" id="addButton" value="add">
+
+                            <input type="submit" value="add" class="btn btn-success">
                         </div>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>

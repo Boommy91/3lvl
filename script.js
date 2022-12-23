@@ -1,23 +1,30 @@
-$("#addButton").click(function () {
-    let nameOfBook = $("#nameBook").val();
-    let year = $("#yearBook").val();
-    let authorFirst = $("#authorBook1").val();
-    let authorSecond = $("#authorBook2").val();
-    let authorThird = $("#authorBook3").val();
-    let description = $("#description").val();
-    let img = $("#imgBook").val();
+$(document).ready(function (e) {
+    $("#image-upload-form").on('submit', (function (e) {
+        e.preventDefault();
 
-    $.ajax({
-        url: 'controller/addBook.php',
-        type: 'post',
-        data: {nameOfBook, year, authorFirst, authorSecond, authorThird, description, img},
-        success: function (data) {
-            if (data === 'ok') {
-                alert('The book has been added successfully');
+        $.ajax({
+            url: "controller/addBook.php",
+            type: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (data) {
+                if (data === 'ok') {
+                    alert('You success add book')
+                } else {
+                    alert('You miss something')
+                }
+            },
+            error: function (data) {
+                console.log("error");
+                console.log(data);
             }
-        }
-    })
+        });
+    }));
 });
+
+
 $(".del").click(function () {
     console.log($(".del").attr('id'));
 });

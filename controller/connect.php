@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$db = 'world';
+$db = 'library';
 $user = 'root';
 $pass = '';
 
