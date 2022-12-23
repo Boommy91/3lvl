@@ -4,8 +4,8 @@ $db = require 'connect.php';
 $name = $_POST['name'];
 $year = $_POST['year'];
 $authorFirst = $_POST['authorBook1'];
-$authorSecond = $_POST['authorBook2'];
-$authorThird = $_POST['authorBook3'];
+if ($_POST['authorBook2'] !== '') $authorSecond = ', ' . $_POST['authorBook2'];
+if ($_POST['authorBook3'] !== '') $authorThird = ', ' . $_POST['authorBook3'];
 $description = $_POST['description'];
 
 if ($_FILES['img']['size'] > 0) {
