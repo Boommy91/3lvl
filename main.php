@@ -8,7 +8,6 @@
     <title>Book library</title>
     <link rel="stylesheet" href="./file/bootstrap-5.0.2-dist/css/bootstrap.min.css">
     <script src="./file/jquery.js"></script>
-    <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
@@ -52,21 +51,23 @@
     <div class="row">
 
         <?php
-        $db = require './controller/connect.php';
+        $booksArray = require './controller/getAllBook.php';
 
 
-        $nameOfBook = '';
-
-
-        for ($i = 0; $i < 20; $i++) {
-            echo " <div class='col-3'>
-            <h1 class='text-center'>hello</h1>
-        </div>";
+        foreach ($booksArray as $item) {
+            echo " <div  class='col-3 d-flex align-items-center justify-content-center '>
+                <button data-bs-toggle='tooltip' title='{$item['author_1']}'  class='btn'><a href='#' style='text-decoration:none'>
+                    <img src='./img/books/{$item['imgName']}' width='180' height='260' class='img-thumbnail '>
+                        <h1 class='text-dark '  id='booksName'>{$item['name']}</h1>
+                        </a>
+            </div>
+            </button>";
         }
         ?>
     </div>
 </div>
 
+<link rel="stylesheet" href="style.css">
 
 <script src="script.js"></script>
 </body>
