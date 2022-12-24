@@ -49,44 +49,16 @@
 
 <div class="container">
     <div class="row">
-
         <?php
+
         $db = require 'controller/connect.php';
-        $sql = "SELECT * FROM books";
-        $total = count($db->query("$sql")->fetchAll(PDO::FETCH_ASSOC));
-        $perPage = 4;
-        $countOfPages = ceil($total / $perPage);
-
-        $page = $_GET['page'] ?? 1;
-        $page = (int)$page;
-
-
-        if ($page < 1) {
-            $page = 1;
-        } elseif ($page > $countOfPages) {
-            $page = $countOfPages;
-        }
-
-        $start = ($page - 1) * $perPage;
-        $end = $start + $perPage;
-
-        $data = $db->query("$sql LIMIT $start,$perPage")->fetchAll(PDO::FETCH_ASSOC);
-
-        foreach ($data as $item) {
-            echo " <div  class='col-3 d-flex align-items-center justify-content-center '>
-                <a href='bookPage.php?id={$item['id']}' style='text-decoration:none'><button data-bs-toggle='tooltip' title='{$item['author_1']}'  class='btn'>
-                    <img src='./img/books/{$item['imgName']}' width='180' height='260' class='img-thumbnail '>
-                        <h1 class='text-dark '  id='booksName'>{$item['name']}</h1>
-                        </button>
-                        </a>
-            </div>
-            ";
-        }
-        $nextPage = (int)$page + 1;
-        $previousPage = (int)$page - 1;
-        echo "<div class='d-flex justify-content-center'> <a href='?page=$previousPage' ><button class='btn btn-success border-1'>previous</button></a>
-        <a href='?page=$nextPage' ><button class='btn btn-warning border-1'>next</button></a></div>";
-
+        $db->query("SELECT * FROM books WHERE id = {$_GET['id']}")->fetchAll(PDO::FETCH_ASSOC);
+var_dump($db);
+        echo "        
+        <div class='col-6'>
+            <img src='img/books/{$db['imgName']}' >
+        </div>
+        "
         ?>
     </div>
 </div>
